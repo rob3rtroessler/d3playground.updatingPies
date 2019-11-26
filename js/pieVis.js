@@ -60,18 +60,17 @@ pieVis.prototype.updateVis = function() {
         .transition()
         .duration(1000)
         .attrTween('d', arcTween)
-        .attr('fill', function (d) {
-            return ('skyblue')
-        })
-        .attr("stroke", "white")
-        .style("stroke-width", "2px")
-        .style("opacity", 1);
+        //.attr('d', arc)
+        .attr('fill', 'skyblue')
+        .attr("stroke", "grey")
+        .style("stroke-width", "1px");
 
-    // remove the group that is not present anymore
+    // remove the group that is not present anymore (if amount of arcs change!)
     vis.pies
         .exit()
         .remove();
 
+    // this function smoothens the transition, otherwise you could just go with attr('d, arc) as indicated above
     function arcTween(a) {
         const i = d3.interpolate(this._current, a);
         this._current = i(1);
